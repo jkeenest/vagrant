@@ -76,6 +76,7 @@ echo VERSION_SUMMARY = $VERSION_SUMMARY
 truncate -s 100GB ${DEVICE}
 yum install numactl libaio -y
 yum install java-1.8.0-openjdk -y
+yum install fio -y
 
 
 cd /vagrant
