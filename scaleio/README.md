@@ -1,6 +1,8 @@
 vagrant-scaleio
 ---------------
 
+# 3/31/16 - modified from emccode/vagrant to add a 4th SDS and reduced memory for mdm1 by NOT installing the gateway/IM 
+
 # Description
 
 Vagrantfile to create a three-VM EMC ScaleIO lab setup.
