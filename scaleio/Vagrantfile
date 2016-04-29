@@ -13,7 +13,7 @@ password="Scaleio123"
 domain = 'scaleio.local'
 
 # add your nodes here
-nodes = ['tb', 'mdm1', 'mdm2', 'sds4']
+nodes = ['tb', 'mdm1', 'mdm2']
 
 # add your IPs here
 network = "192.168.50"

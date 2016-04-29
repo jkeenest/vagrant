@@ -123,13 +123,15 @@ if [ "${CLUSTERINSTALL}" == "True" ]; then
   scli --mdm_ip ${FIRSTMDMIP} --add_sds --sds_ip ${FIRSTMDMIP} --device_path ${DEVICE} --sds_name sds1 --protection_domain_name pdomain --storage_pool_name pool1
   scli --mdm_ip ${FIRSTMDMIP} --add_sds --sds_ip ${SECONDMDMIP} --device_path ${DEVICE} --sds_name sds2 --protection_domain_name pdomain --storage_pool_name pool1
   scli --mdm_ip ${FIRSTMDMIP} --add_sds --sds_ip ${TBIP} --device_path ${DEVICE} --sds_name sds3 --protection_domain_name pdomain --storage_pool_name pool1
-  # remove comment below to auto-add SDS (not tested) otherwise demonstrate adding in the GUI/CLI
+  # remove comment below22 to auto-add SDS (not tested) otherwise demonstrate adding in the GUI/CLI
   # scli --mdm_ip ${FIRSTMDMIP} --add_sds --sds_ip ${sds4ip} --device_path ${DEVICE} --sds_name sds4 --protection_domain_name pdomain --storage_pool_name pool1
-  scli --mdm_ip ${FIRSTMDMIP} --add_volume --size_gb 8 --volume_name vol1 --protection_domain_name pdomain --storage_pool_name pool1 --thin_provisioned
-  while [ $? -ne 0 ] ; do echo "Trying to add volume again.."; sleep 1; scli --mdm_ip ${FIRSTMDMIP} --add_volume --size_gb 8 --volume_name vol1 --protection_domain_name pdomain --storage_pool_name pool1 ; done
-  scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${FIRSTMDMIP} --allow_multi_map
-  scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${SECONDMDMIP} --allow_multi_map
-  scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${TBIP} --allow_multi_map
+  # Cannot create thin volume - error having to do with capacity.
+  # A thick volume creates far more traffic for a rebuild or rebalance. Manually create a volume.
+  # scli --mdm_ip ${FIRSTMDMIP} --add_volume --size_gb 8 --volume_name vol1 --protection_domain_name pdomain --storage_pool_name pool1 --thin_provisioned
+  # while [ $? -ne 0 ] ; do echo "Trying to add volume again.."; sleep 1; scli --mdm_ip ${FIRSTMDMIP} --add_volume --size_gb 8 --volume_name vol1 --protection_domain_name pdomain --storage_pool_name pool1 ; done
+  # scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${FIRSTMDMIP} --allow_multi_map
+  # scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${SECONDMDMIP} --allow_multi_map
+  # scli --mdm_ip ${FIRSTMDMIP} --map_volume_to_sdc --volume_name vol1 --sdc_ip ${TBIP} --allow_multi_map
 fi
 
 
